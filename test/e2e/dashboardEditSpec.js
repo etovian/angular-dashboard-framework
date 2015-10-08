@@ -43,7 +43,7 @@ describe('dashboard edit tests', function(){
     // enter edit mode
     element(by.css('h1 a')).click();
     // open edit dialog
-    element(by.css('h1 a > i.glyphicon-cog')).click();
+    element(by.css('h1 a > i.fa-cogs')).click();
 
     // select title input, press ctrl+a and write Fancy title
     var input = element(by.css('#dashboardTitle'));
@@ -68,7 +68,7 @@ describe('dashboard edit tests', function(){
     // enter edit mode
     element(by.css('h1 a')).click();
     // open edit dialog
-    element(by.css('h1 a > i.glyphicon-cog')).click();
+    element(by.css('h1 a > i.fa-cogs')).click();
 
     // wait for modal
     helper.waitForModal(browser);
