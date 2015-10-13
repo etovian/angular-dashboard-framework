@@ -86,7 +86,7 @@ describe('widget directive tests', function() {
       $scope.editMode = true;
 
       var element = compileTemplate(directive);
-      element.find('.glyphicon-remove').click();
+      element.find('.fa-remove').click();
       $scope.$digest();
 
       expect($scope.column.widgets.length).toBe(1);
