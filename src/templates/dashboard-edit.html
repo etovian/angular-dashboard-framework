@@ -11,8 +11,9 @@
       <label>Structure</label>
       <fieldset>
         <div class="radio radio-primary" ng-repeat="(key, structure) in structures">
-          <label>
-            <input type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)"> {{key}}
+          <input id="opt_{{$index}}" name="structure" type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)">
+          <label for="opt_{{$index}}">
+             {{key}}
           </label>
         </div>        
       </fieldset>
