@@ -5,10 +5,10 @@
       <i class="fa fa-plus"></i>
     </a>
     <a href="" ng-if="editMode" title="edit dashboard" ng-click="editDashboardDialog()">
-      <i class="fa fa-cogs"></i>
+      <i class="fa fa-pencil"></i>
     </a>
     <a href="" ng-if="options.editable" title="{{editMode ? 'save changes' : 'enable edit mode'}}" ng-click="toggleEditMode()">
-      <i class="fa" x-ng-class="{'fa-pencil-square-o' : !editMode, 'fa-cloud-upload' : editMode}"></i>
+      <i class="fa" x-ng-class="{'fa-pencil-square-o' : !editMode, 'fa-check' : editMode}"></i>
     </a>
     <a href="" ng-if="editMode" title="undo changes" ng-click="cancelEditMode()">
       <i class="fa fa-undo adf-flip"></i>
