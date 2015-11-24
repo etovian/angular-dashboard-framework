@@ -1,25 +1,26 @@
 <div class="modal-header">
-  <h4 class="modal-title">Edit Dashboard</h4>
+    <h4 class="modal-title">Edit Dashboard</h4>
 </div>
 <div class="modal-body">
-  <form role="form">
-    <div class="form-group">
-      <label for="dashboardTitle">Title</label>
-      <input type="text" class="form-control" id="dashboardTitle" ng-model="copy.title" required="">
-    </div>
-    <div class="form-group">
-      <label>Structure</label>
-      <fieldset>
-        <div class="radio radio-primary" ng-repeat="(key, structure) in structures">
-          <input id="opt_{{$index}}" name="structure" type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)">
-          <label for="opt_{{$index}}">
-             {{key}}
-          </label>
-        </div>        
-      </fieldset>
-    </div>
-  </form>
+    <form role="form">
+        <div class="form-group">
+            <label for="dashboardTitle">Title</label>
+            <input type="text" class="form-control" id="dashboardTitle" ng-model="copy.title" required="">
+        </div>
+        <div class="form-group">
+            <label>Structure</label>
+            <fieldset>
+                <div class="radio radio-primary" ng-repeat="(key, structure) in structures">
+                    <adf-layout-sample adf-structure="structure"></adf-layout-sample>
+                    <input id="opt_{{$index}}" name="structure" type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)">
+                    <label for="opt_{{$index}}">
+                        {{key}}
+                    </label>
+                </div>
+            </fieldset>
+        </div>
+    </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary close" ng-click="closeDialog()">Close</button>
+    <button type="button" class="btn btn-primary close" ng-click="closeDialog()">Close</button>
 </div>
