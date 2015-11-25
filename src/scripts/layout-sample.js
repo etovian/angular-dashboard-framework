@@ -19,10 +19,24 @@ function AdfLayoutSampleDirectiveController() {
 	var vm = this;
 
 	angular.extend(vm, {
-		getColumnWidth: function(numberOfColumns) {
-			var width = (100 / (numberOfColumns || 1)).toFixed(2);
-			console.log('width: ', width);
+		getColumnWidth: function(styleClass) {
+
+			var map = {
+				'col-md-3': '25.00',
+				'col-md-4': '33.33',
+				'col-md-6': '50.00',
+				'col-md-8': '66.66',
+				'col-md-9': '75.00',
+				'col-md-12': '100.00'
+			};
+
+			var width = (map[styleClass] ? map[styleClass] : '100.00') + '%';
 			return width;
+		},
+		getRowHeight: function(numberOfRows) {
+
+			var height = (100 / numberOfRows).toFixed(2);
+			return height;
 		}
 	});
 }

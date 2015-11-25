@@ -1,6 +1,6 @@
 <div style="border: 1px solid; border-color: #ccc; width: 100px;">
 	<div ng-repeat="row in vm.adfStructure.rows" class="clearfix">
-		<div ng-repeat="column in row.columns" style="width: {{ vm.getColumnWidth(row.columns.length) }}%; height: 20px; background-color: #e0e0e0; float: left; box-sizing: border-box; border: 2px solid white;">
+		<div ng-repeat="column in row.columns" style="width: {{ vm.getColumnWidth(column.styleClass) }}; height: {{ vm.getRowHeight(vm.adfStructure.rows.length) }}px; background-color: #e0e0e0; float: left; box-sizing: border-box; border: 2px solid white;">
 			
 		</div>
 	</div>	

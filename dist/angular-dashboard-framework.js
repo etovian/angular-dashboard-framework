@@ -621,15 +621,24 @@ function AdfLayoutSampleDirectiveController() {
 	var vm = this;
 
 	angular.extend(vm, {
-		getColumnWidth: function(numberOfColumns) {
-			var width = 100 / (numberOfColumns || 1);
+		getColumnWidth: function(styleClass) {
+
+			var map = {
+				'col-md-3': '25.00',
+				'col-md-4': '33.33',
+				'col-md-6': '50.00',
+				'col-md-8': '66.66',
+				'col-md-9': '75.00',
+				'col-md-12': '100.00'
+			};
+
+			var width = (map[styleClass] ? map[styleClass] : '100.00') + '%';
 			return width;
 		},
-		getColumnX: function(columnIndex, numberOfColumns) {
-			var spacing = columnIndex * vm.getColumnWidth(numberOfColumns);
-			var padding = (numberOfColumns - 1) * 2;
-			var x = spacing + padding;
-			return x;
+		getRowHeight: function(numberOfRows) {
+
+			var height = (100 / numberOfRows).toFixed(2);
+			return height;
 		}
 	});
 }
@@ -1300,11 +1309,11 @@ angular.module('adf')
   }]);
 
 angular.module("adf").run(["$templateCache", function($templateCache) {$templateCache.put("../src/templates/dashboard-column.html","<div adf-id={{column.cid}} class=column ng-class=column.styleClass ng-model=column.widgets> <adf-widget ng-repeat=\"definition in column.widgets\" definition=definition column=column edit-mode=editMode options=options widget-state=widgetState>  </adf-widget></div> ");
-$templateCache.put("../src/templates/dashboard-edit.html","<div class=modal-header> <h4 class=modal-title>Edit Dashboard</h4> </div> <div class=modal-body> <form role=form> <div class=form-group> <label for=dashboardTitle>Title</label> <input type=text class=form-control id=dashboardTitle ng-model=copy.title required> </div> <div class=form-group> <label>Structure</label> <fieldset> <div class=\"radio radio-primary\" ng-repeat=\"(key, structure) in structures\"> <adf-layout-sample adf-structure=structure> <input id=opt_{{$index}} name=structure type=radio value={{key}} ng-model=model.structure ng-change=\"changeStructure(key, structure)\"> <label for=opt_{{$index}}> {{key}} </label> </adf-layout-sample></div> </fieldset> </div> </form> </div> <div class=modal-footer> <button type=button class=\"btn btn-primary close\" ng-click=closeDialog()>Close</button> </div> ");
+$templateCache.put("../src/templates/dashboard-edit.html","<div class=modal-header> <h4 class=modal-title>Edit Dashboard</h4> </div> <div class=modal-body> <form role=form> <div class=form-group> <label for=dashboardTitle>Title</label> <input type=text class=form-control id=dashboardTitle ng-model=copy.title required> </div> <div class=form-group> <label>Structure</label> <fieldset> <div class=\"radio radio-primary\" ng-repeat=\"(key, structure) in structures\"> <adf-layout-sample adf-structure=structure></adf-layout-sample> <input id=opt_{{$index}} name=structure type=radio value={{key}} ng-model=model.structure ng-change=\"changeStructure(key, structure)\"> <label for=opt_{{$index}}> {{key}} </label> </div> </fieldset> </div> </form> </div> <div class=modal-footer> <button type=button class=\"btn btn-primary close\" ng-click=closeDialog()>Close</button> </div> ");
 $templateCache.put("../src/templates/dashboard-row.html","<div class=row ng-class=row.styleClass>  </div> ");
 $templateCache.put("../src/templates/dashboard-title.html","<h1> {{model.title}} <span style=\"font-size: 16px\" class=pull-right> <a href ng-if=editMode title=\"add new widget\" ng-click=addWidgetDialog()> <i class=\"fa fa-plus\"></i> </a> <a href ng-if=editMode title=\"edit dashboard\" ng-click=editDashboardDialog()> <i class=\"fa fa-pencil\"></i> </a> <a href ng-if=options.editable title=\"{{editMode ? \'save changes\' : \'enable edit mode\'}}\" ng-click=toggleEditMode()> <i class=fa x-ng-class=\"{\'fa-pencil-square-o\' : !editMode, \'fa-check\' : editMode}\"></i> </a> <a href ng-if=editMode title=\"undo changes\" ng-click=cancelEditMode()> <i class=\"fa fa-undo adf-flip\"></i> </a> </span> </h1> ");
 $templateCache.put("../src/templates/dashboard.html","<div class=dashboard-container> <div ng-include src=model.titleTemplateUrl></div> <div class=dashboard x-ng-class=\"{\'edit\' : editMode}\"> <adf-dashboard-row row=row adf-model=model options=options ng-repeat=\"row in model.rows\" edit-mode=editMode continuous-edit-mode=continuousEditMode> </adf-dashboard-row></div> </div>");
-$templateCache.put("../src/templates/layout-sample.html","<div ng-repeat=\"row in vm.adfStructure.rows\"> <svg xlmns=http://www.w3.org/2000/svg role=img width=100 height=66> <rect ng-repeat=\"column in row.columns\" x=\"vm.getColumnX($index, row.columns.length)\" y=0.00 width=vm.getColumnWidth(row.columns.length) height=20.00 fill=#e0e0e0 stroke=#ccc></rect> </svg> </div>");
+$templateCache.put("../src/templates/layout-sample.html","<div style=\"border: 1px solid; border-color: #ccc; width: 100px;\"> <div ng-repeat=\"row in vm.adfStructure.rows\" class=clearfix> <div ng-repeat=\"column in row.columns\" style=\"width: {{ vm.getColumnWidth(column.styleClass) }}; height: {{ vm.getRowHeight(vm.adfStructure.rows.length) }}px; background-color: #e0e0e0; float: left; box-sizing: border-box; border: 2px solid white;\"> </div> </div> </div>");
 $templateCache.put("../src/templates/widget-add.html","<div class=modal-header> <h4 class=modal-title>Add new widget</h4> </div> <div class=modal-body> <div style=\"display: inline-block;\"> <dl class=dl-horizontal> <dt ng-repeat-start=\"(key, widget) in widgets\"> <a href ng-click=addWidget(key)> {{widget.title}} </a> </dt> <dd ng-repeat-end ng-if=widget.description> {{widget.description}} </dd> </dl> </div> </div> <div class=modal-footer> <button type=button class=\"btn btn-primary close\" ng-click=closeDialog()>Close</button> </div>");
 $templateCache.put("../src/templates/widget-delete.html","<div class=modal-header> <h4 class=modal-title>Delete {{widget.title}}</h4> </div> <div class=modal-body> <form role=form> <div class=form-group> <label for=widgetTitle>Are you sure you want to delete this widget ?</label> </div> </form> </div> <div class=modal-footer> <button type=button class=\"btn btn-default close\" ng-click=closeDialog()>Close</button> <button type=button class=\"btn btn-primary\" ng-click=deleteDialog()>Delete</button> </div> ");
 $templateCache.put("../src/templates/widget-edit.html","<div class=modal-header> <h4 class=modal-title>{{widget.title}}</h4> </div> <div class=modal-body> <form role=form> <div class=form-group> <label for=widgetTitle>Title</label> <input type=text class=form-control id=widgetTitle ng-model=definition.title placeholder=\"Enter title\" required> </div> </form> <div ng-if=widget.edit> <adf-widget-content model=definition content=widget.edit> </adf-widget-content></div> </div> <div class=modal-footer> <button type=button class=\"btn btn-default\" ng-click=closeDialog()>Cancel</button> <button type=button class=\"btn btn-primary\" ng-click=saveDialog()>Apply</button> </div> ");
