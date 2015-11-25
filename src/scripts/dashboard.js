@@ -300,6 +300,7 @@ angular.module('adf')
           });
           $scope.changeStructure = function(name, structure){
             $log.info('change structure to ' + name);
+            model.selectedKey = name;
             changeStructure(model, structure);
           };
           editDashboardScope.closeDialog = function(){
@@ -308,6 +309,13 @@ angular.module('adf')
             // close modal and destroy the scope
             instance.close();
             editDashboardScope.$destroy();
+          };
+          editDashboardScope.getSelectedStructureClass = function(key) {
+            var styleClass = '';
+            if(key === model.selectedKey) {
+              styleClass = 'selected';
+            }
+            return styleClass;
           };
         };
 

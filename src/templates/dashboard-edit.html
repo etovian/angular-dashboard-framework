@@ -11,11 +11,11 @@
             <label>Structure</label>
             <fieldset>
                 <div class="radio radio-primary" ng-repeat="(key, structure) in structures">
-                    <adf-layout-sample adf-structure="structure"></adf-layout-sample>
-                    <input id="opt_{{$index}}" name="structure" type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)">
+                    <adf-layout-sample ng-click="changeStructure(key, structure)" adf-structure="structure" ng-class="getSelectedStructureClass(key, structure)"></adf-layout-sample>
+                    <!-- <input id="opt_{{$index}}" name="structure" type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)">
                     <label for="opt_{{$index}}">
                         {{key}}
-                    </label>
+                    </label> -->
                 </div>
             </fieldset>
         </div>

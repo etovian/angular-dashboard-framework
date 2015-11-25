@@ -11,6 +11,7 @@ function AdfLayoutSampleDirective(adfTemplatePath) {
 		bindToController: true,
 		controller: AdfLayoutSampleDirectiveController,
 		controllerAs: 'vm',
+		replace: true,
 		templateUrl: adfTemplatePath + 'layout-sample.html'
 	};
 }
@@ -35,7 +36,7 @@ function AdfLayoutSampleDirectiveController() {
 		},
 		getRowHeight: function(numberOfRows) {
 
-			var height = (100 / numberOfRows).toFixed(2);
+			var height = (60 / numberOfRows).toFixed(2);
 			return height;
 		}
 	});
