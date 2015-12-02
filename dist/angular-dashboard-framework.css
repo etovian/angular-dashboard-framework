@@ -10,6 +10,10 @@
 	box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
 }
 
+.adf-layout-sample.selected {
+	border: 3px solid #f00;
+}
+
 .adf-layout-sample-column {
 	 background-color: #e0e0e0; 
 	 float: left; 

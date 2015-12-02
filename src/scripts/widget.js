@@ -25,7 +25,7 @@
 'use strict';
 
 angular.module('adf')
-  .directive('adfWidget', function($log, $modal, $rootScope, dashboard, adfTemplatePath) {
+  .directive('adfWidget', function($log, $aside, $rootScope, dashboard, adfTemplatePath) {
 
     function preLink($scope) {
       var definition = $scope.definition;
@@ -110,9 +110,11 @@ angular.module('adf')
             var opts = {
               scope: deleteScope,
               templateUrl: deleteTemplateUrl,
-              backdrop: 'static'
+              backdrop: 'static',
+              placement: 'right',
+              size: 'sm'
             };
-            var instance = $modal.open(opts);
+            var instance = $aside.open(opts);
 
             deleteScope.closeDialog = function() {
               instance.close();
@@ -145,10 +147,12 @@ angular.module('adf')
           var opts = {
             scope: editScope,
             templateUrl: adfEditTemplatePath,
-            backdrop: 'static'
+            backdrop: 'static',
+            placement: 'right',
+            size: 'md'
           };
 
-          var instance = $modal.open(opts);
+          var instance = $aside.open(opts);
           editScope.closeDialog = function() {
             instance.close();
             editScope.$destroy();
@@ -181,11 +185,15 @@ angular.module('adf')
         options: '=',
         widgetState: '='
       },
-      controller: function($scope) {
+      controller: function($scope, LocalizationService) {
 
         $scope.$on('adfDashboardCollapseExapand', function(event, args) {
           $scope.widgetState.isCollapsed = args.collapseExpandStatus;
         });
+
+        $scope.localize = function(key) {
+          return LocalizationService.getValue(key);
+        };
 
         $scope.openFullScreen = function() {
           var definition = $scope.definition;
@@ -195,10 +203,11 @@ angular.module('adf')
             templateUrl: adfTemplatePath + 'widget-fullscreen.html',
             size: definition.modalSize || 'lg', // 'sm', 'lg'
             backdrop: 'static',
-            windowClass: (definition.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal'
+            windowClass: (definition.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal',
+            placement: 'top'
           };
 
-          var instance = $modal.open(opts);
+          var instance = $aside.open(opts);
           fullScreenScope.closeDialog = function() {
             instance.close();
             fullScreenScope.$destroy();

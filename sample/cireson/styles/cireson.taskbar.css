@@ -1,0 +1,144 @@
+.drawertaskbar {
+    background-color: #333;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000; /* changed from 2000 to avoid covering modal */
+    left: 0;
+    right: 0;
+    margin-right: 0;
+    height: 50px;
+    text-align: center
+}
+
+.drawertaskbar .tooltip-container {
+    position: absolute;
+    width: 100%;
+    height: 36px
+}
+
+.drawertaskbar .tooltip-container-drawer-button {
+    position: absolute;
+    width: 70px;
+    height: 50px
+}
+
+.drawertaskbar .tooltip-container-hidden {
+    z-index: -1
+}
+
+.drawertaskbar .drawertaskbar-newbutton {
+    padding: 0 15px;
+    float: left;
+    background-color: #000;
+    height: 60px
+}
+
+.drawertaskbar .drawertaskbar-newbutton:hover {
+    background-color: #505861
+}
+
+.drawertaskbar .drawertaskbar-newbutton-img {
+    float: left;
+    padding-top: 15px
+}
+
+.drawertaskbar .drawertaskbar-newbutton-text {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-left: 8px;
+    line-height: 50px
+}
+
+.drawertaskbar .drawertaskbar-commands {
+    width: 90%;
+    margin: 0 auto
+}
+
+.drawertaskbar .drawertaskbar-commands .drawer-task-menu {
+    bottom: 35px;
+    margin-bottom: 2px;
+    padding: 0;
+    text-align: left
+}
+
+.drawertaskbar .drawertaskbar-commands .drawer-task-menu li {
+    cursor: pointer
+}
+
+.drawertaskbar .drawertaskbar-commands .drawer-task-menu li[disabled] {
+    cursor: default
+}
+
+.drawertaskbar .drawertaskbar-commands .drawer-task-menu li[disabled] a {
+    color: #6b6b6b;
+    pointer-events: none
+}
+
+.drawertaskbar .drawertaskbar-commands .drawer-task-menu li a {
+    margin: 0;
+    padding: 8px 15px !important
+}
+
+.drawertaskbar .drawertaskbar-commands .divider-left:before {
+    content: "";
+    border-left: 1px solid #6b6b6b;
+    position: absolute;
+    height: 45px;
+    top: -18px
+}
+
+.drawertaskbar .drawertaskbar-commands .btn-taskbar {
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    width: 70px;
+    padding: 3px
+}
+
+.drawertaskbar .drawertaskbar-commands .btn-taskbar:hover,.drawertaskbar .drawertaskbar-commands .btn-taskbar:focus {
+    background-color: #000
+}
+
+.drawertaskbar .drawertaskbar-commands .btn-taskbar:hover {
+    background-color: #000
+}
+
+.drawertaskbar .drawertaskbar-commands .btn-taskbar[disabled] {
+    background-color: transparent;
+    -ms-opacity: .3;
+    opacity: .3
+}
+
+.drawertaskbar .drawertaskbar-commands .btn-taskbar div {
+    font-size: 9px;
+    text-transform: uppercase;
+    padding: 10px 0
+}
+
+.drawertaskbar .drawertaskbar-commands .btn-link,.drawertaskbar .drawertaskbar-commands .btn-link:hover,.drawertaskbar .drawertaskbar-commands .btn-link:focus {
+    color: #fff;
+    text-decoration: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    width: 70px;
+    padding: 3px
+}
+
+.drawertaskbar .drawertaskbar-commands .btn-link:hover {
+    background-color: #000
+}
+
+.drawertaskbar .drawertaskbar-commands .btn-link[disabled] {
+    background-color: transparent;
+    -ms-opacity: .3;
+    opacity: .3
+}
+
+.drawertaskbar .drawertaskbar-commands .btn-link div {
+    font-size: 9px;
+    text-transform: uppercase;
+    padding: 10px 0
+}

@@ -47,8 +47,10 @@
  */
 
 angular.module('adf')
-  .directive('adfDashboard', function ($rootScope, $log, $modal, dashboard, adfTemplatePath) {
+  .directive('adfDashboard', function ($rootScope, $log, $aside, dashboard, adfTemplatePath) {
     'use strict';
+
+
 
     function stringToBoolean(string){
       switch(angular.isDefined(string) ? string.toLowerCase() : null){
@@ -212,12 +214,28 @@ angular.module('adf')
         adfModel: '=',
         adfWidgetFilter: '='
       },
-      controller: function($scope){
+      controller: function($scope, UserService, LocalizationService, NavigationGuardService){
         var model = {};
         var structure = {};
         var widgetFilter = null;
         var structureName = {};
         var name = $scope.name;
+
+        $scope.sessionUser = null;
+
+        UserService.getSessionUser().then(function(user) {
+          $scope.sessionUser = user;
+        });
+
+        function guardian() {
+          var message = 'There may be unsaved changes to the page.  Are you sure you want to continue?';
+          return $scope.editMode ? message : undefined;
+        }
+        NavigationGuardService.registerGuardian(guardian);
+
+        $scope.localize = function(key) {
+          return LocalizationService.getValue(key);
+        };
 
         // Watching for changes on adfModel
         $scope.$watch('adfModel', function(oldVal, newVal) {
@@ -293,10 +311,12 @@ angular.module('adf')
           };
           editDashboardScope.structures = dashboard.structures;
 
-          var instance = $modal.open({
+          var instance = $aside.open({
             scope: editDashboardScope,
             templateUrl: adfTemplatePath + 'dashboard-edit.html',
-            backdrop: 'static'
+            backdrop: 'static',
+            placement: 'right',
+            size: 'sm'
           });
           $scope.changeStructure = function(name, structure){
             $log.info('change structure to ' + name);
@@ -345,10 +365,12 @@ angular.module('adf')
           var opts = {
             scope: addScope,
             templateUrl: adfAddTemplatePath,
-            backdrop: 'static'
+            backdrop: 'static',
+            placement: 'top',
+            size: 'lg'
           };
 
-          var instance = $modal.open(opts);
+          var instance = $aside.open(opts);
           addScope.addWidget = function(widget){
             var w = {
               type: widget,
