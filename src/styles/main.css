@@ -28,8 +28,9 @@
 }
 
 .adf-move {
-  cursor: move;
-  cursor: -webkit-grabbing;
+  cursor: crosshair;
+  /*cursor: move;*/
+  /*cursor: -webkit-grabbing;*/
 }
 
 .edit .column {

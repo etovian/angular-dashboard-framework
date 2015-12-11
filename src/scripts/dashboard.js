@@ -366,8 +366,8 @@ angular.module('adf')
             scope: addScope,
             templateUrl: adfAddTemplatePath,
             backdrop: 'static',
-            placement: 'top',
-            size: 'lg'
+            placement: 'right',
+            size: 'md'
           };
 
           var instance = $aside.open(opts);

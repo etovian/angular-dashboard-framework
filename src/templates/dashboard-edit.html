@@ -7,15 +7,11 @@
             <label for="dashboardTitle">{{ localize('Title') }}</label>
             <input type="text" class="form-control" id="dashboardTitle" ng-model="copy.title" required="">
         </div>
-        <div class="form-group">
+        <div class="form-group" class="clearfix">
             <label>{{ localize('Structure') }}</label>
             <fieldset>
-                <div class="radio radio-primary" ng-repeat="(key, structure) in structures">
+                <div ng-repeat="(key, structure) in structures" style="float: left;">
                     <adf-layout-sample ng-click="changeStructure(key, structure)" adf-structure="structure" ng-class="getSelectedStructureClass(key, structure)"></adf-layout-sample>
-                    <!-- <input id="opt_{{$index}}" name="structure" type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)">
-                    <label for="opt_{{$index}}">
-                        {{key}}
-                    </label> -->
                 </div>
             </fieldset>
         </div>

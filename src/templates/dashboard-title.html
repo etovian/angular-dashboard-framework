@@ -32,18 +32,18 @@
         </div>
         <div class="drawertaskbar-commands drawercommands">
             <div id="drawer-taskbar" class="drawercommands-commands-contextual">
-                <button ng-click="addWidgetDialog()" ng-if="editMode" class="btn btn-link btn-lg"><span class="fa fa-plus"></span>
+                <a ng-click="addWidgetDialog()" ng-if="editMode" class="btn btn-link btn-lg"><span class="fa fa-plus"></span>
                     <div>{{ localize('Add') }}</div>
-                </button>
-                <button  ng-click="editDashboardDialog()" ng-if="editMode" class="btn btn-link btn-lg"><span class="fa fa-pencil"></span>
+                </a>
+                <a  ng-click="editDashboardDialog()" ng-if="editMode" class="btn btn-link btn-lg"><span class="fa fa-cog"></span>
                     <div>{{ localize('Edit') }}</div>
-                </button>
-                <button ng-click="cancelEditMode()" ng-if="editMode" class="btn btn-link btn-lg"><span class="fa fa-times"></span>
+                </a>
+                <a ng-click="cancelEditMode()" ng-if="editMode" class="btn btn-link btn-lg"><span class="fa fa-times"></span>
                     <div>{{ localize('Cancel') }}</div>
-                </button>
-                <button ng-if="sessionUser.IsAdmin" ng-click="toggleEditMode()" class="btn btn-link btn-lg"><span class="fa" x-ng-class="{'fa-pencil-square-o' : !editMode, 'fa-check' : editMode}"></span>
+                </a>
+                <a ng-if="sessionUser.IsAdmin" ng-click="toggleEditMode()" class="btn btn-link btn-lg"><span class="fa" x-ng-class="{'fa-pencil-square-o' : !editMode, 'fa-check' : editMode}"></span>
                     <div>{{ editMode ? localize('Save') : localize('Edit') }}</div>
-                </button>
+                </a>
             </div>
         </div>
     </div>
