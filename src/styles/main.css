@@ -29,8 +29,10 @@
 
 .adf-move {
   cursor: crosshair;
-  /*cursor: move;*/
-  /*cursor: -webkit-grabbing;*/
+}
+
+.panel-heading .fa.adf-move {
+  cursor: crosshair;
 }
 
 .edit .column {

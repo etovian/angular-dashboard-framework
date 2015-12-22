@@ -1,30 +1,30 @@
 <h3 class="panel-title">
 {{definition.title}}
   <span class="pull-right">
-    <a href="" title="reload widget content" ng-if="widget.reload" ng-click="reload()">
+    <a href="" title="{{::localize('ReloadWidgetContent')}}" ng-if="widget.reload" ng-click="reload()">
       <i class="fa fa-refresh"></i>
     </a>
     <!-- change widget location -->
-    <a href="" title="change widget location" class="adf-move" ng-if="editMode">
-      <i class="fa fa-arrows"></i>
+    <a href="" title="{{::localize('ChangeWidgetLocation')}}" class="adf-move" ng-if="editMode">
+      <i class="fa fa-arrows adf-move"></i>
     </a>
     <!-- collapse -->
-    <a href="" title="collapse widget" ng-show="options.collapsible && !widgetState.isCollapsed" ng-click="widgetState.isCollapsed = !widgetState.isCollapsed">
+    <a href="" title="{{::localize('CollapseWidget')}}" ng-show="options.collapsible && !widgetState.isCollapsed" ng-click="widgetState.isCollapsed = !widgetState.isCollapsed">
       <i class="fa fa-minus"></i>
     </a>
     <!-- expand -->
-    <a href="" title="expand widget" ng-show="options.collapsible && widgetState.isCollapsed" ng-click="widgetState.isCollapsed = !widgetState.isCollapsed">
+    <a href="" title="{{::localize('ExpandWidget')}}" ng-show="options.collapsible && widgetState.isCollapsed" ng-click="widgetState.isCollapsed = !widgetState.isCollapsed">
       <i class="fa fa-plus"></i>
     </a>
     <!-- open edit mode -->
-    <a href="" title="edit widget configuration" ng-click="edit()" ng-if="editMode">
+    <a href="" title="{{ ::localize('EditWidgetSettings') }}" ng-click="edit()" ng-if="editMode">
       <i class="fa fa-cog"></i>
     </a>
-    <a href="" title="fullscreen widget" ng-click="openFullScreen()" ng-show="options.maximizable">
+    <a href="" title="{{::localize('MaximizeWidget')}}" ng-click="openFullScreen()" ng-show="options.maximizable">
      <i class="fa fa-arrows-h"></i>
     </a>
     <!-- remove widget -->
-    <a href="" title="remove widget" ng-click="remove()" ng-if="editMode">
+    <a href="" title="{{::localize('RemoveWidget')}}" ng-click="remove()" ng-if="editMode">
       <i class="fa fa-trash"></i>
     </a>
   </span>

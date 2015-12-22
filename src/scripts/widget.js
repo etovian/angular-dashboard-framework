@@ -110,7 +110,6 @@ angular.module('adf')
             var opts = {
               scope: deleteScope,
               templateUrl: deleteTemplateUrl,
-              backdrop: 'static',
               placement: 'right',
               size: 'sm'
             };
@@ -147,9 +146,8 @@ angular.module('adf')
           var opts = {
             scope: editScope,
             templateUrl: adfEditTemplatePath,
-            backdrop: 'static',
             placement: 'right',
-            size: 'md'
+            size: 'sm'
           };
 
           var instance = $aside.open(opts);
@@ -202,7 +200,6 @@ angular.module('adf')
             scope: fullScreenScope,
             templateUrl: adfTemplatePath + 'widget-fullscreen.html',
             size: definition.modalSize || 'lg', // 'sm', 'lg'
-            backdrop: 'static',
             windowClass: (definition.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal',
             placement: 'top'
           };

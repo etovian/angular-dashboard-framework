@@ -1,10 +1,10 @@
 <div class="modal-header">
-  <h4 class="modal-title">{{widget.title}}</h4>
+  <h4 class="modal-title">{{ ::localize(widget.title) }}</h4>
 </div>
 <div class="modal-body">
   <form role="form">
     <div class="form-group">
-      <label for="widgetTitle">{{ localize('Title') }}</label>
+      <label for="widgetTitle">{{ ::localize('Title') }}</label>
       <input type="text" class="form-control" id="widgetTitle" ng-model="definition.title" placeholder="Enter title" required="">
     </div>
   </form>
@@ -13,6 +13,6 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" ng-click="closeDialog()">{{ localize('Cancel') }}</button>
-  <button type="button" class="btn btn-primary" ng-click="saveDialog()">{{ localize('Apply') }}</button>
+  <button type="button" class="btn btn-primary" ng-click="saveDialog()">{{ ::localize('Apply') }}</button>
+  <button type="button" class="btn btn-default" ng-click="closeDialog()">{{ ::localize('Cancel') }}</button>
 </div>

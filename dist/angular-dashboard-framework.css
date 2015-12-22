@@ -3,6 +3,7 @@
 	border-color: #ccc; 
 	width: 100px;
 	margin: 5px;
+    cursor: pointer;
 }
 
 .adf-layout-sample:HOVER {
@@ -12,13 +13,13 @@
 }
 
 .adf-layout-sample.selected {
-	border: 3px solid #f00;
+	border: 3px solid #71b1d1;
 }
 
 .adf-layout-sample-column {
 	 background-color: #e0e0e0; 
 	 float: left; 
-	 box-sizing: border-box; 
+	 box-sizing: border-box;
 	 border: 2px solid white;
 }
 
@@ -26,6 +27,28 @@ input, select {
   text-indent: 0.8em;
 }
 
+.k-grid td {
+    border-width: 1px 0 0 1px;
+    border-style: none !important;
+}
+
+.k-grid tr {
+    border-style: none !important;
+}
+
+.panel {
+    box-shadow: none;
+}
+
+.modal-backdrop {
+	opacity: 0.7;
+	z-index: 3000;
+}
+
+.modal {
+	display: inherit;
+	z-index: 3000;
+}
 /**
  The MIT License
 
@@ -57,8 +80,10 @@ input, select {
 
 .adf-move {
   cursor: crosshair;
-  /*cursor: move;*/
-  /*cursor: -webkit-grabbing;*/
+}
+
+.panel-heading .fa.adf-move {
+  cursor: crosshair;
 }
 
 .edit .column {

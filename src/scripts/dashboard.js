@@ -176,6 +176,26 @@ angular.module('adf')
     }
 
     /**
+     * Returns true if the model has no widgets; otherwise false
+     *
+     * @param dashboard model
+    */
+    function hasWidgets(model) {
+      var returnValue = false;
+      if(model && model.rows) {
+        angular.forEach(model.rows, function(row) {
+          angular.forEach(row.columns, function(column) {
+            if(angular.isArray(column.widgets) && column.widgets.length > 0) {
+              returnValue = true;
+            }
+          });
+        });
+      }
+
+      return returnValue;
+    }
+
+    /**
      * Adds the widget to first column of the model.
      *
      * @param dashboard model
@@ -225,6 +245,9 @@ angular.module('adf')
 
         UserService.getSessionUser().then(function(user) {
           $scope.sessionUser = user;
+          if($scope.model && (hasWidgets($scope.model) === false) && user.IsAdmin) {
+            $scope.editMode = true;
+          }
         });
 
         function guardian() {
@@ -265,6 +288,14 @@ angular.module('adf')
               if (!model.titleTemplateUrl) {
                 model.titleTemplateUrl = adfTemplatePath + 'dashboard-title.html';
               }
+              var canEdit = 
+                $scope.sessionUser && 
+                $scope.sessionUser.IsAdmin && 
+                model && 
+                (hasWidgets(model) === false);
+              if(canEdit) {
+                $scope.editMode = true;
+              }      
               $scope.model = model;
             } else {
               $log.error('could not find or create model');
@@ -314,9 +345,9 @@ angular.module('adf')
           var instance = $aside.open({
             scope: editDashboardScope,
             templateUrl: adfTemplatePath + 'dashboard-edit.html',
-            backdrop: 'static',
             placement: 'right',
-            size: 'sm'
+            size: 'sm',
+            animation: 0
           });
           $scope.changeStructure = function(name, structure){
             $log.info('change structure to ' + name);
@@ -365,9 +396,8 @@ angular.module('adf')
           var opts = {
             scope: addScope,
             templateUrl: adfAddTemplatePath,
-            backdrop: 'static',
             placement: 'right',
-            size: 'md'
+            size: 'sm'
           };
 
           var instance = $aside.open(opts);

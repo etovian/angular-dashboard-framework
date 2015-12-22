@@ -1,26 +1,7 @@
 <h1>
-    {{ model.title }}
+    {{ ::model.title }}
 </h1>
-<!-- 
-<h1>
-  {{model.title}}
-  <span style="font-size: 16px" class="pull-right">
-    <a href="" ng-if="editMode" title="add new widget" ng-click="addWidgetDialog()">
-      <i class="fa fa-plus"></i>
-    </a>
-    <a href="" ng-if="editMode" title="edit dashboard" ng-click="editDashboardDialog()">
-      <i class="fa fa-pencil"></i>
-    </a>
-    <a href="" ng-if="options.editable" title="{{editMode ? 'save changes' : 'enable edit mode'}}" ng-click="toggleEditMode()">
-      <i class="fa" x-ng-class="{'fa-pencil-square-o' : !editMode, 'fa-check' : editMode}"></i>
-    </a>
-    <a href="" ng-if="editMode" title="undo changes" ng-click="cancelEditMode()">
-      <i class="fa fa-undo adf-flip"></i>
-    </a>
-  </span>
-</h1>
- -->
-<!-- cireson -->
+
 
 <div class="drawer">
     <div class="drawer-drawertaskbar drawertaskbar">
@@ -28,21 +9,21 @@
             <div class="drawertaskbar-newbutton-img">
                 <span class="fa fa-plus-square fa-lg nav-icon-color"></span>
             </div>
-            <span class="drawertaskbar-newbutton-text"><span>New</span></span>
+            <span class="drawertaskbar-newbutton-text"><span>{{ ::localize('New') }}</span></span>
         </div>
         <div class="drawertaskbar-commands drawercommands">
             <div id="drawer-taskbar" class="drawercommands-commands-contextual">
+                <a  ng-click="editDashboardDialog()" ng-if="editMode" class="btn btn-link btn-lg"><span class="fa fa-th-large"></span>
+                    <div>{{ localize('Layout') }}</div>
+                </a>
                 <a ng-click="addWidgetDialog()" ng-if="editMode" class="btn btn-link btn-lg"><span class="fa fa-plus"></span>
-                    <div>{{ localize('Add') }}</div>
-                </a>
-                <a  ng-click="editDashboardDialog()" ng-if="editMode" class="btn btn-link btn-lg"><span class="fa fa-cog"></span>
-                    <div>{{ localize('Edit') }}</div>
-                </a>
-                <a ng-click="cancelEditMode()" ng-if="editMode" class="btn btn-link btn-lg"><span class="fa fa-times"></span>
-                    <div>{{ localize('Cancel') }}</div>
+                    <div>{{ localize('Content') }}</div>
                 </a>
                 <a ng-if="sessionUser.IsAdmin" ng-click="toggleEditMode()" class="btn btn-link btn-lg"><span class="fa" x-ng-class="{'fa-pencil-square-o' : !editMode, 'fa-check' : editMode}"></span>
                     <div>{{ editMode ? localize('Save') : localize('Edit') }}</div>
+                </a>
+                <a ng-click="cancelEditMode()" ng-if="editMode" class="btn btn-link btn-lg"><span class="fa fa-times"></span>
+                    <div>{{ ::localize('Cancel') }}</div>
                 </a>
             </div>
         </div>
