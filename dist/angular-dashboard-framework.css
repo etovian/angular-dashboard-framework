@@ -82,6 +82,13 @@ input, select {
   cursor: crosshair;
 }
 
+.adf-widget-title i.fa {
+  margin: 2px;
+  padding: 3px;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+
 .panel-heading .fa.adf-move {
   cursor: crosshair;
 }
