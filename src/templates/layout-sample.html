@@ -1,6 +1,6 @@
 <div class="adf-layout-sample">
 	<div ng-repeat="row in vm.adfStructure.rows" class="clearfix">
-		<div ng-repeat="column in row.columns" class="adf-layout-sample-column" style="width: {{ vm.getColumnWidth(column.styleClass) }}; height: {{ vm.getRowHeight(vm.adfStructure.rows.length) }}px;">
+		<div ng-repeat="column in row.columns" class="adf-layout-sample-column" ng-style="{{ vm.getColumnStyle(column) }}">
 			
 		</div>
 	</div>	

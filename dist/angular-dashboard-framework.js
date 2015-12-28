@@ -696,10 +696,19 @@ function AdfLayoutSampleDirectiveController() {
 			var width = (map[styleClass] ? map[styleClass] : '100.00') + '%';
 			return width;
 		},
-		getRowHeight: function(numberOfRows) {
+		getRowHeight: function() {
 
+			var numberOfRows = vm.adfStructure.rows.length;
 			var height = (60 / numberOfRows).toFixed(2);
 			return height;
+		},
+		getColumnStyle: function(column) {
+			var style = {
+				'width': vm.getColumnWidth(column.styleClass),
+				'height': vm.getRowHeight() + 'px'
+			};
+
+			return style;
 		}
 	});
 }
@@ -1380,7 +1389,7 @@ $templateCache.put("../src/templates/dashboard-edit.html","<div class=modal-head
 $templateCache.put("../src/templates/dashboard-row.html","<div class=row ng-class=row.styleClass>  </div> ");
 $templateCache.put("../src/templates/dashboard-title.html","<h1> {{ ::model.title }} </h1> <div class=drawer> <div class=\"drawer-drawertaskbar drawertaskbar\"> <div class=\"drawertaskbar-newbutton drawer-button drawer-toggle\" data-cid=drawer-new> <div class=drawertaskbar-newbutton-img> <span class=\"fa fa-plus-square fa-lg nav-icon-color\"></span> </div> <span class=drawertaskbar-newbutton-text><span>{{ ::localize(\'New\') }}</span></span> </div> <div class=\"drawertaskbar-commands drawercommands\"> <div id=drawer-taskbar class=drawercommands-commands-contextual> <a ng-click=editDashboardDialog() ng-if=editMode class=\"btn btn-link btn-lg\"><span class=\"fa fa-th-large\"></span> <div>{{ localize(\'Layout\') }}</div> </a> <a ng-click=addWidgetDialog() ng-if=editMode class=\"btn btn-link btn-lg\"><span class=\"fa fa-plus\"></span> <div>{{ localize(\'Content\') }}</div> </a> <a ng-if=sessionUser.IsAdmin ng-click=toggleEditMode() class=\"btn btn-link btn-lg\"><span class=fa x-ng-class=\"{\'fa-pencil-square-o\' : !editMode, \'fa-check\' : editMode}\"></span> <div>{{ editMode ? localize(\'Save\') : localize(\'Edit\') }}</div> </a> <a ng-click=cancelEditMode() ng-if=editMode class=\"btn btn-link btn-lg\"><span class=\"fa fa-times\"></span> <div>{{ ::localize(\'Cancel\') }}</div> </a> </div> </div> </div> </div> ");
 $templateCache.put("../src/templates/dashboard.html","<div class=dashboard-container> <div ng-include src=model.titleTemplateUrl></div> <div class=dashboard x-ng-class=\"{\'edit\' : editMode}\"> <adf-dashboard-row row=row adf-model=model options=options ng-repeat=\"row in model.rows\" edit-mode=editMode continuous-edit-mode=continuousEditMode> </adf-dashboard-row></div> </div>");
-$templateCache.put("../src/templates/layout-sample.html","<div class=adf-layout-sample> <div ng-repeat=\"row in vm.adfStructure.rows\" class=clearfix> <div ng-repeat=\"column in row.columns\" class=adf-layout-sample-column style=\"width: {{ vm.getColumnWidth(column.styleClass) }}; height: {{ vm.getRowHeight(vm.adfStructure.rows.length) }}px;\"> </div> </div> </div>");
+$templateCache.put("../src/templates/layout-sample.html","<div class=adf-layout-sample> <div ng-repeat=\"row in vm.adfStructure.rows\" class=clearfix> <div ng-repeat=\"column in row.columns\" class=adf-layout-sample-column ng-style=\"{{ vm.getColumnStyle(column) }}\"> </div> </div> </div>");
 $templateCache.put("../src/templates/widget-add.html","<div class=modal-header> <h4 class=modal-title>{{ ::localize(\'AddNewContent\') }}</h4> </div> <div class=modal-body> <div> <div ng-repeat=\"(key, widget) in widgets\"> <a href ng-click=addWidget(key)> <h5>{{ ::localize(widget.title) }}</h5> </a> <p> {{ ::localize(widget.description) }} </p> <br> </div> </div> </div> <div class=modal-footer> <button type=button class=\"btn btn-primary close\" ng-click=closeDialog()>{{ ::localize(\'Close\') }}</button> </div> ");
 $templateCache.put("../src/templates/widget-delete.html","<div class=modal-header> <h4 class=modal-title>{{ ::localize(\'Delete\') }} {{widget.title}}</h4> </div> <div class=modal-body> <form role=form> <div class=form-group> <label for=widgetTitle>{{ ::localize(\'DeleteWidgetConfirmation\') }}</label> </div> </form> </div> <div class=modal-footer> <button type=button class=\"btn btn-default close\" ng-click=closeDialog()>{{ ::localize(\'Close\') }}</button> <button type=button class=\"btn btn-primary\" ng-click=deleteDialog()>{{ ::localize(\'Delete\') }}</button> </div> ");
 $templateCache.put("../src/templates/widget-edit.html","<div class=modal-header> <h4 class=modal-title>{{ ::localize(widget.title) }}</h4> </div> <div class=modal-body> <form role=form> <div class=form-group> <label for=widgetTitle>{{ ::localize(\'Title\') }}</label> <input type=text class=form-control id=widgetTitle ng-model=definition.title placeholder=\"Enter title\" required> </div> </form> <div ng-if=widget.edit> <adf-widget-content model=definition content=widget.edit> </adf-widget-content></div> </div> <div class=modal-footer> <button type=button class=\"btn btn-primary\" ng-click=saveDialog()>{{ ::localize(\'Apply\') }}</button> <button type=button class=\"btn btn-default\" ng-click=closeDialog()>{{ ::localize(\'Cancel\') }}</button> </div>");

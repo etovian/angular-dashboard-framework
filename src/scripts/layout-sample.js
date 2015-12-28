@@ -34,10 +34,19 @@ function AdfLayoutSampleDirectiveController() {
 			var width = (map[styleClass] ? map[styleClass] : '100.00') + '%';
 			return width;
 		},
-		getRowHeight: function(numberOfRows) {
+		getRowHeight: function() {
 
+			var numberOfRows = vm.adfStructure.rows.length;
 			var height = (60 / numberOfRows).toFixed(2);
 			return height;
+		},
+		getColumnStyle: function(column) {
+			var style = {
+				'width': vm.getColumnWidth(column.styleClass),
+				'height': vm.getRowHeight() + 'px'
+			};
+
+			return style;
 		}
 	});
 }
